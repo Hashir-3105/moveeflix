@@ -6,7 +6,7 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-} from "@/Components/ui/pagination"
+} from "@/components/ui/pagination"
 
 const CustomPagination = ({currentPage , onPageChange , totalPages}) => {
     return (
