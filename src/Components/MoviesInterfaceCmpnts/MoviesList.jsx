@@ -1,14 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react'
 // import MoviesCard from './MoviesCard';
-import CustomPagination from '../../Hooks/CustomPagination';
+// import CustomPagination from '../../Hooks/CustomPagination';
 import MovieListSkeleton from '../Skeleton/MovieListSkeleton';
-import HeaderMenu from './HeaderMenu';
+// import HeaderMenu from './HeaderMenu';
 import { BASE_URL, BASE_URL_IMAGE } from '@/Constants';
 import { useDispatch , useSelector } from 'react-redux'
 import { addToCart } from '@/redux-toolkit/slices/cartSlice';
 import { setVoteRange , setVoteAverage , resetFilters } from '@/redux-toolkit/slices/filterSlice';
 import MoviesCard from './MoviesCard';
-import HeaderNavigationMenu from './HeaderNavigationMenu';
+import HeaderMenu from './HeaderMenu';
+import CustomPagination from '@/Hooks/CustomPagination';
+// import HeaderNavigationMenu from './HeaderNavigationMenu';
 
 const MoviesList = () => {
     const [allMovies, setAllMovies] = useState([])
