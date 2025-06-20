@@ -2,7 +2,7 @@ import React from 'react'
 import {
     Sheet,
     SheetContent,
-} from "@/components/ui/sheet"
+} from "@/Components/ui/Sheet"
 import { useDispatch, useSelector } from 'react-redux';
 import { BASE_URL_IMAGE } from '@/Constants';
 import { Link } from 'react-router-dom';
