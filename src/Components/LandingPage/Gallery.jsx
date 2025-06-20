@@ -101,7 +101,7 @@ function StyleSheet() {
         <style>{`
             #example {
             width: 100vw;
-            max-width: 800px;
+            max-width: 798px;
             position: relative;
             }
 
