@@ -48,7 +48,7 @@ const HistorySave = () => {
                                     onClick={() => setSelectedItem(item)}
                                         src={`${BASE_URL_IMAGE}${item.poster_path}`}
                                         alt={item.original_title}
-                                        className="w-14 h-14 object-cover rounded"
+                                        className="w-14 h-14 object-cover rounded cursor-pointer"
                                     />
                                     <div>
                                         <h2 className={`text-sm font-semibold`}>{item.original_title}</h2>

@@ -121,4 +121,6 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+/* Add this to your global CSS or inside a module */
+
 

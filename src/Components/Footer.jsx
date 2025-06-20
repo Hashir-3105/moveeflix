@@ -11,7 +11,10 @@ const Footer = () => {
                 </div>
                 
                 <div className="flex space-x-6 text-sm font-medium">
-                    <Link to="HomePage" className="hover:text-white">Home</Link>
+                    <Link onClick={() => window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    })} to="/" className="hover:text-white">Home</Link>
                     <a href="#" className="hover:text-white">Genres</a>
                     <a href="#" className="hover:text-white">Top Rated</a>
                     <a href="#" className="hover:text-white">Contact</a>

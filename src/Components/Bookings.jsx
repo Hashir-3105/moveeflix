@@ -29,8 +29,8 @@ const Bookings = () => {
             ) : (
                 <div className=' p-8 '>
                     <div className="relative flex items-center mb-8">
-                        <button onClick={() => history.back()} title='Go Back' className="absolute left-1 cursor-pointer"><ArrowLeft /></button>
-                        <h1 className="mx-auto text-3xl font-bold text-center">Your Bookings</h1>
+                        <button onClick={() => history.back()} title='Go Back' className="absolute left-1 text-black cursor-pointer"><ArrowLeft /></button>
+                        <h1 className="mx-auto text-black text-3xl font-bold text-center">Your Bookings</h1>
                     </div>
                     {cartItems.length === 0 ? (
                         <div className="flex justify-center items-center">
@@ -60,7 +60,7 @@ const Bookings = () => {
                                 ))}
                             </div>
                             <div className="text-lg w-3xl flex flex-col text-start mx-auto font-medium">
-                                <p className='flex justify-between px-2 text-base text-black'>Total Booking  <span className="font-semibold text-blue-600">{cartItems.reduce((acc, item) => acc + item.quantity, 0)}</span></p>
+                                <p className='flex justify-between px-2 text-base text-black'>Total Bookings  <span className="font-semibold text-blue-600">{cartItems.reduce((acc, item) => acc + item.quantity, 0)}</span></p>
                                 <hr className='mx-4 my-2 h-[1px]' />
                                 <p className='flex justify-between px-2 text-base text-black'>Subtotal  <span className="font-semibold text-blue-600">${subTotal}</span></p>
                             </div>

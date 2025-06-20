@@ -8,6 +8,7 @@ import { useDispatch , useSelector } from 'react-redux'
 import { addToCart } from '@/redux-toolkit/slices/cartSlice';
 import { setVoteRange , setVoteAverage , resetFilters } from '@/redux-toolkit/slices/filterSlice';
 import MoviesCard from './MoviesCard';
+import HeaderNavigationMenu from './HeaderNavigationMenu';
 
 const MoviesList = () => {
     const [allMovies, setAllMovies] = useState([])
@@ -65,6 +66,10 @@ const MoviesList = () => {
 
     const handlePageClick = (page) => {
         setCurrentPage(page);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
     const handleVoteCountChange = (range) => {
             dispatch(setVoteRange(range))
@@ -83,6 +88,7 @@ const MoviesList = () => {
                     setCurrentPage(1)
                 }}
             />
+            {/* <HeaderNavigationMenu />     */}
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-3'>
                 {isLoading ? Array.from({ length: 8 }).map((_, index) => (
                     <MovieListSkeleton key={index} />

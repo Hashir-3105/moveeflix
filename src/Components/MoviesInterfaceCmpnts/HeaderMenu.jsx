@@ -21,14 +21,14 @@ const HeaderMenu = ({ onCountChange, onAverageChange, resetFilters }) => {
         }
     }
     return (
-        <Menubar className={`mx-4 mb-6 bg-gray-[#182423]`}>
+        <Menubar className={`mx-4 mb-6 bg-gray-[#182423] `}>
             <MenubarMenu>
                 <Link to={'/'} >
-                    <MenubarTrigger onClick={() => resetFilters()}>Home</MenubarTrigger>
+                    <MenubarTrigger className={`cursor-pointer`} onClick={() => resetFilters()}>Home</MenubarTrigger>
                 </Link>
             </MenubarMenu>
             <MenubarMenu >
-                <MenubarTrigger>Vote Count</MenubarTrigger>
+                <MenubarTrigger className={`cursor-pointer`}>Vote Count</MenubarTrigger>
                 <MenubarContent>
                     <MenubarItem onClick={() => handleVoteClick('all')}>All</MenubarItem>
                     <MenubarSeparator />
@@ -40,7 +40,7 @@ const HeaderMenu = ({ onCountChange, onAverageChange, resetFilters }) => {
                 </MenubarContent>
             </MenubarMenu>
             <MenubarMenu>
-                <MenubarTrigger>Vote Average</MenubarTrigger>
+                <MenubarTrigger className={`cursor-pointer`}>Vote Average</MenubarTrigger>
                 <MenubarContent>
                     <MenubarItem onClick={() => handleAverageClick('all')}>All</MenubarItem>
                     <MenubarSeparator />

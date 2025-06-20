@@ -12,6 +12,7 @@ import PrivateRoute from './Components/auth/PrivateRoute'
 import HistorySave from './Components/HistorySave'
 import Bookings from './Components/Bookings'
 import Home from './Components/LandingPage/Home'
+import SignUpPage from './Components/auth/Sign-up/SignUpPage'
 // import ResetPassword from './Components/auth/reset-password/ResetPassword'
 // import SignUpForm from './Components/auth/SignUpForm'
 // import SignUp from './Clerk/SignUpForm'
@@ -20,7 +21,11 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
@@ -74,7 +79,7 @@ const router = createBrowserRouter([
   // },
   {
     path: 'sign-up',
-    element: <SignUp />
+    element: <SignUpPage />
   },
 
 ])

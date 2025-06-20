@@ -1,28 +1,24 @@
-import * as Dialog from '@radix-ui/react-dialog';
-import { X } from 'lucide-react';
+import React from 'react'
+import {
+    Sheet,
+    SheetContent,
+} from "@/components/ui/sheet"
 import { useDispatch, useSelector } from 'react-redux';
 import { BASE_URL_IMAGE } from '@/Constants';
 import { Link } from 'react-router-dom';
 import { incrementQuantity, decrementQuantity } from '@/redux-toolkit/slices/cartSlice';
 import { removeFromCart } from '@/redux-toolkit/slices/cartSlice';
+import { X } from 'lucide-react';
 
-export default function SideModal({ open, onClose }) {
+const SideSheet = ({ open, onClose }) => {
     const cartItems = useSelector(state => state.cart.items)
     const dispatch = useDispatch();
     const STATIC_Booking_PRICE = 40;
-
     return (
-        <Dialog.Root open={open} onOpenChange={onClose}>
-            <Dialog.Portal>
-                <Dialog.Overlay className="fixed z-50 inset-0 bg-black/50" />
-                <Dialog.Content className="fixed z-50 rounded-lg top-0 right-0 w-96 h-full bg-white shadow-lg p-5 overflow-y-auto">
-                    <button
-                        onClick={onClose}
-                        className="absolute top-4 right-4 bg-gray-200 px-2 py-1 rounded"
-                    >
-                        <X size={24} className="text-gray-600 hover:text-black" />
-                    </button>
-                    <h1 className="text-lg font-bold mb-4 text-black">Items ({cartItems.length})</h1>
+        <Sheet open={open} onOpenChange={onClose}>
+            <SheetContent className="w-[400px] sm:w-[540px] p-4 text-black flex flex-col h-full">
+                <div className="flex-1 overflow-y-auto">
+                    <h1 className="text-lg font-bold mb-4 text-black"> {cartItems.length > 1 ? "Items" : 'Item'} ( {cartItems.length} ) </h1>
                     {cartItems.map((item) => (
                         <div key={item.id} className="relative flex gap-2 items-center mb-4 border p-2 rounded-md">
                             <img
@@ -58,13 +54,20 @@ export default function SideModal({ open, onClose }) {
                             </button>
                         </div>
                     ))}
+                </div>
+                <div className="sticky bottom-0 bg-white p-2">
                     <Link to={'/BookingsPage'} className='flex justify-center items-center'>
-                        <button disabled={cartItems.length === 0} className="fixed bottom-0 mb-2 w-68  overflow-hidden cursor-pointer px-3 py-2 rounded-lg bg-gradient-to-r from-blue-400 to-purple-500 text-white font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out">
+                        <button
+                            disabled={cartItems.length === 0}
+                            className={`w-full ${cartItems.length === 0 ? "opacity-50 cursor-not-allowed" : 'cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out'} px-3 py-2 rounded-lg bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white font-semibold shadow-md`}
+                        >
                             Book Now
                         </button>
                     </Link>
-                </Dialog.Content>
-            </Dialog.Portal>
-        </Dialog.Root>
-    );
+                </div>
+            </SheetContent>
+        </Sheet>
+    )
 }
+
+export default SideSheet
