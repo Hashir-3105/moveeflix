@@ -6,7 +6,7 @@ import {
     MenubarMenu,
     MenubarSeparator,
     MenubarTrigger,
-} from "@/Components/ui/Menubar"
+} from "@/Components/ui/_Menubar"
 import { Link } from 'react-router-dom';
 
 const HeaderMenu = ({ onCountChange, onAverageChange, resetFilters }) => {
