@@ -4,7 +4,7 @@ import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-function Sheet({
+function _Sheet({
   ...props
 }) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -127,7 +127,7 @@ function SheetDescription({
 }
 
 export {
-  Sheet,
+  _Sheet,
   SheetTrigger,
   SheetClose,
   SheetContent,
