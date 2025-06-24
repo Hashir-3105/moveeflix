@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import { ShoppingCart, FolderClock } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { animate } from 'animejs';
 import { setSearchItem } from '@/redux-toolkit/slices/filterSlice';
-import SideModal from './SideModal';
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from '../Hooks/ThemeToggle';
 import { UserButton } from '@clerk/clerk-react';
 import SideSheet from './SideSheet';
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
     const cartItems = useSelector(state => state.cart.items);
     const searchItem = useSelector(state => state.filters.searchItem);
+    const location = useLocation();
+    const currentPath = location.pathname;
     const dispatch = useDispatch();
     const handleOpenModal = () => {
         setIsOpen(true)
@@ -46,31 +47,44 @@ const Header = () => {
                     </h1>
                 </Link>
                 <div className='w-[50%] flex gap-2'>
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        onChange={(e) => dispatch(setSearchItem(e.target.value))}
-                        value={searchItem}
-                        className={` dark:text-white placeholder:text-gray-600 dark:placeholder:text-white w-full pl-4 border rounded focus:outline-none focus:ring focus:ring-blue-300`}
-                    />
-                    <button onClick={handleOpenModal} className="cursor-pointer border px-4 py-2 rounded-sm flex items-center gap-2">
-                        <div className="relative">
-                            <ShoppingCart className="w-6 h-6" />
-                            <span className="absolute -top-2 -right-2 bg-red-400 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
-                                {cartItems.length}
-                            </span>
+                    {currentPath === '/' ? (
+                        <div className='flex items-center gap-2 w-full'>
+                        <Link className="cursor-pointer border px-4 py-2 rounded-sm flex items-center gap-2 scroll-mt-24">
+                            Gallery
+                        </Link>
+                        <Link to={'/Pricing'} className="cursor-pointer border px-4 py-2 rounded-sm flex items-center gap-2">
+                            Pricing
+                        </Link>
                         </div>
-                    </button>
-                    <Link className='cursor-pointer border px-4 py-2 rounded-sm flex items-center gap-2' title='History' to={'/HistoryPage'}>
-                        <FolderClock />
-                    </Link>
+                    ) : (
+                        <>
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                onChange={(e) => dispatch(setSearchItem(e.target.value))}
+                                value={searchItem}
+                                className={` dark:text-white placeholder:text-gray-600 dark:placeholder:text-white w-full pl-4 border rounded focus:outline-none focus:ring focus:ring-blue-300`}
+                            />
+                            <button onClick={handleOpenModal} className="cursor-pointer border px-4 py-2 rounded-sm flex items-center gap-2">
+                                <div className="relative">
+                                    <ShoppingCart className="w-6 h-6" />
+                                    <span className="absolute -top-2 -right-2 bg-red-400 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+                                        {cartItems.length}
+                                    </span>
+                                </div>
+                            </button>
+                            <Link className='cursor-pointer border px-4 py-2 rounded-sm flex items-center gap-2' title='History' to={'/HistoryPage'}>
+                                <FolderClock />
+                            </Link>
+                        </>
+                    )
+                    }
                     <ThemeToggle />
                     <button className="cursor-pointer flex justify-end mx-2">
                         <UserButton />
                     </button>
                 </div>
             </div>
-            {/* <SideModal open={isOpen} onClose={() => setIsOpen(false)} /> */}
             <SideSheet open={isOpen} onClose={() => setIsOpen(false)} />
         </>
     )

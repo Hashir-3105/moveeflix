@@ -1,16 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react'
-// import MoviesCard from './MoviesCard';
-// import CustomPagination from '../../Hooks/CustomPagination';
 import MovieListSkeleton from '../Skeleton/MovieListSkeleton';
-// import HeaderMenu from './HeaderMenu';
 import { BASE_URL, BASE_URL_IMAGE } from '@/Constants';
-import { useDispatch , useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '@/redux-toolkit/slices/cartSlice';
-import { setVoteRange , setVoteAverage , resetFilters } from '@/redux-toolkit/slices/filterSlice';
+import { setVoteRange, setVoteAverage, resetFilters } from '@/redux-toolkit/slices/filterSlice';
 import MoviesCard from './MoviesCard';
 import HeaderMenu from './HeaderMenu';
 import CustomPagination from '@/Hooks/CustomPagination';
 // import HeaderNavigationMenu from './HeaderNavigationMenu';
+// import Loader from '../Loader';
+
 
 const MoviesList = () => {
     const [allMovies, setAllMovies] = useState([])
@@ -19,7 +18,6 @@ const MoviesList = () => {
     const dispatch = useDispatch();
     const filters = useSelector(state => state.filters)
     const API_KEY = import.meta.env.VITE_API_KEY
-
     useEffect(() => {
         async function moviesList() {
             try {
@@ -74,7 +72,7 @@ const MoviesList = () => {
         });
     };
     const handleVoteCountChange = (range) => {
-            dispatch(setVoteRange(range))
+        dispatch(setVoteRange(range))
     };
     const handleVoteAverageChange = (range) => {
         dispatch(setVoteAverage(range))
@@ -103,6 +101,7 @@ const MoviesList = () => {
                             movieTitle={movie.original_title}
                             releaseDate={movie.release_date}
                             onclick={() => dispatch(addToCart(movie))}
+
                         />
                     ))}
             </div>

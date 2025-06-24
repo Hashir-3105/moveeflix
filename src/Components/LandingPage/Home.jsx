@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PricingSection from "./PricinigSection";
-import ScrollLinked from "./Gallery";
+import Gallery from "./Gallery";
+import AnimatedCubeBackground from "../AnimationCubeBackground";
 
 const Home = () => {
     return (
-        <>
-            <div className="min-h-screen px-4 flex flex-col items-center justify-center">
+        <div className="relative">
+            <AnimatedCubeBackground />
+            <div className="min-h-[calc(100vh-64px)] px-4 flex flex-col items-center justify-center relative z-10">
                 <motion.h1
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -40,12 +42,15 @@ const Home = () => {
                     </Link>
                 </motion.div>
             </div>
-            <div className="flex flex-col items-center justify-center py-8">
-                <ScrollLinked />
-            </div>
-            <PricingSection />
-        </>
 
+            <div className="flex flex-col items-center justify-center py-8 scroll-mt-24 relative z-10">
+                <Gallery />
+            </div>
+
+            <section id="top-rated" className="scroll-mt-24 relative z-10">
+                <PricingSection />
+            </section>
+        </div>
     );
 };
 

@@ -15,9 +15,9 @@ const Footer = () => {
                         top: 0,
                         behavior: 'smooth'
                     })} to="/" className="hover:text-white">Home</Link>
-                    <a href="#" className="hover:text-white">Genres</a>
-                    <a href="#" className="hover:text-white">Top Rated</a>
-                    <a href="#" className="hover:text-white">Contact</a>
+                    <a href="#gallery" className="hover:text-white">Contact us</a>
+                    <a href="#top-rated" className="hover:text-white">Top Rated</a>
+                    {/* <a href="#" className="hover:text-white">Contact</a> */}
                 </div>
 
                 <div className="text-sm text-white/80 text-center md:text-right">

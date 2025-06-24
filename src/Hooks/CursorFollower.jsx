@@ -2,16 +2,15 @@ import { useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const colors = [
-  "#ff00ff", // Inner
-  "#e754ff", // Middle
-  "#8a2be2", // Outer
+  "#ff00ff", 
+  "#e754ff",
+  "#8a2be2", 
 ];
 
-// Matching delay and spring config
 const configs = [
   { size: 12, color: colors[0], spring: { damping: 18, stiffness: 300 } },
   { size: 20, color: colors[1], spring: { damping: 22, stiffness: 220 } },
-  { size: 28, color: colors[2], spring: { damping: 28, stiffness: 160 } }, // smoothest
+  { size: 28, color: colors[2], spring: { damping: 28, stiffness: 160 } },
 ];
 
 const MainCursor = () => {
@@ -70,7 +69,6 @@ const Follower = ({ size, color, springConfig }) => {
         height: size,
         borderRadius: "50%",
         border: `2px solid ${color}`,
-        // boxShadow: `0 0 10px ${color}, 0 0 20px ${color}`,
         pointerEvents: "none",
         zIndex: 9998,
         x: springX,
