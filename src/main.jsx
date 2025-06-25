@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "./redux-toolkit/store";
 import { Provider } from "react-redux";
 import { ClerkProvider, SignUp } from "@clerk/clerk-react";
-import MovieDetails from "./components/MoviesInterfaceCmpnts/MovieDetails";
+import MovieDetails from "./components/MoviesInterfaceCmpnts/MovieDetails.jsx";
 import MoviesList from "./components/MoviesInterfaceCmpnts/MoviesList";
 import SignInForm from "./components/auth/SignInForm";
 import PrivateRoute from "./components/auth/PrivateRoute";
