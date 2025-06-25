@@ -112,16 +112,13 @@
     
   }
 }
-/* Hide scrollbar but allow scrolling */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
-/* Add this to your global CSS or inside a module */
-
 section {
   scroll-margin-top: 100px;
 }

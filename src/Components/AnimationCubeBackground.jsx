@@ -4,34 +4,34 @@ import { useAnimationFrame } from "motion/react";
 import { useRef } from "react";
 
 export default function AnimatedCubeBackground() {
-    const ref = useRef(null);
+  const ref = useRef(null);
 
-    useAnimationFrame((t) => {
-        if (!ref.current) return;
+  useAnimationFrame((t) => {
+    if (!ref.current) return;
 
-        const rotate = Math.sin(t / 10000) * 200;
-        const y = (1 + Math.sin(t / 1000)) * -50;
-        ref.current.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`;
-    });
+    const rotate = Math.sin(t / 10000) * 200;
+    const y = (1 + Math.sin(t / 1000)) * -50;
+    ref.current.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`;
+  });
 
-    return (
-        <div className="cube-bg">
-            <div className="cube" ref={ref}>
-                <div className="side front" />
-                <div className="side left" />
-                <div className="side right" />
-                <div className="side top" />
-                <div className="side bottom" />
-                <div className="side back" />
-            </div>
-            <StyleSheet />
-        </div>
-    );
+  return (
+    <div className="cube-bg">
+      <div className="cube" ref={ref}>
+        <div className="side front" />
+        <div className="side left" />
+        <div className="side right" />
+        <div className="side top" />
+        <div className="side bottom" />
+        <div className="side back" />
+      </div>
+      <StyleSheet />
+    </div>
+  );
 }
 
 function StyleSheet() {
-    return (
-        <style>{`
+  return (
+    <style>{`
             .cube-bg {
                 position: fixed;
                 top: 30px;
@@ -70,5 +70,5 @@ function StyleSheet() {
             .top { transform: rotateX(90deg) translateZ(150px); }
             .bottom { transform: rotateX(-90deg) translateZ(150px); }
         `}</style>
-    );
+  );
 }
