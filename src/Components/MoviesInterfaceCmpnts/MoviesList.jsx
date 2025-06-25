@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
 import MovieListSkeleton from "../Skeleton/MovieListSkeleton";
-import { BASE_URL, BASE_URL_IMAGE } from "@/Constants";
-import { useDispatch, useSelector } from "react-redux";
+import { BASE_URL_IMAGE } from "@/Constants";
+import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux-toolkit/slices/cartSlice";
 import {
   setVoteRange,
@@ -10,68 +9,19 @@ import {
 } from "@/redux-toolkit/slices/filterSlice";
 import MoviesCard from "./MoviesCard";
 import HeaderMenu from "./HeaderMenu";
-import CustomPagination from "@/Hooks/CustomPagination";
+import CustomPagination from "@/components/reusable-components/CustomPagination";
+import useFetchMovies from "@/hooks/useFetchMovies";
 
 const MoviesList = () => {
-  const [allMovies, setAllMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  useEffect(() => {
-    async function moviesList() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(
-          `${BASE_URL}/movie/popular?api_key=${API_KEY}`
-        );
-        const moviesData = await response.json();
-        console.log(moviesData.results);
-        setAllMovies(moviesData.results);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    moviesList();
-  }, []);
-
-  const filteredMovies = useMemo(() => {
-    const result = allMovies
-      .filter((movie) =>
-        movie.original_title
-          .toLowerCase()
-          .includes(filters.searchItem.toLowerCase())
-      )
-      .filter((movie) => {
-        const voteCount = movie.vote_count;
-        if (filters.voteRange === "1-500")
-          return voteCount >= 1 && voteCount <= 500;
-        if (filters.voteRange === "501-1000")
-          return voteCount >= 501 && voteCount <= 1000;
-        if (filters.voteRange === "1000+") return voteCount > 1000;
-        return true;
-      })
-      .filter((movie) => {
-        const voteAverage = movie.vote_average;
-        if (filters.voteAverage === "1-5")
-          return voteAverage >= 1 && voteAverage <= 5;
-        if (filters.voteAverage === "5+") return voteAverage > 5;
-        return true;
-      });
-    console.log("Filtering from original movies:", allMovies.length);
-    console.log("Current filters:", filters);
-    return result;
-  }, [allMovies, filters]);
-
-  const postPerPage = 8;
-  const totalPages = Math.ceil(filteredMovies.length / postPerPage);
-
-  const lastPostIndex = currentPage * postPerPage;
-  const firstPostIndex = lastPostIndex - postPerPage;
-  const currentPosts = filteredMovies.slice(firstPostIndex, lastPostIndex);
+  const {
+    isLoading,
+    filteredMovies,
+    currentPage,
+    setCurrentPage,
+    currentPosts,
+    totalPages,
+  } = useFetchMovies();
 
   const handlePageClick = (page) => {
     setCurrentPage(page);

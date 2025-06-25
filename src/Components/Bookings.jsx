@@ -102,7 +102,6 @@ const Bookings = () => {
                   </span>
                 </p>
               </div>
-
               <div className="my-3 flex justify-center items-center">
                 <button
                   onClick={handleConfirmBooking}

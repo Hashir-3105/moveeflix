@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { animate } from "animejs";
 import { setSearchItem } from "@/redux-toolkit/slices/filterSlice";
-import ThemeToggle from "../Hooks/ThemeToggle";
+import ThemeToggle from "./reusable-components/ThemeToggle";
 import { UserButton } from "@clerk/clerk-react";
 import SideSheet from "./SideSheet";
 import { motion, AnimatePresence } from "framer-motion";

@@ -1,12 +1,12 @@
-import HistorySave from '@/Components/HistorySave'
-import React from 'react'
+import HistorySave from "@/components/HistorySave";
+import React from "react";
 
 const page = () => {
-    return (
-        <div>
-            <HistorySave />
-        </div>
-    )
-}
+  return (
+    <div>
+      <HistorySave />
+    </div>
+  );
+};
 
-export default page
+export default page;

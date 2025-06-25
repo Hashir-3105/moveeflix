@@ -1,29 +1,29 @@
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { store } from './redux-toolkit/store'
-import { Provider } from 'react-redux'
-import { ClerkProvider, SignUp } from '@clerk/clerk-react'
-import MovieDetails from './Components/MoviesInterfaceCmpnts/MovieDetails'
-import Layout from './Layout'
-import MoviesList from './Components/MoviesInterfaceCmpnts/MoviesList'
-import SignInForm from './Components/auth/SignInForm'
-import PrivateRoute from './Components/auth/PrivateRoute'
-import HistorySave from './Components/HistorySave'
-import Bookings from './Components/Bookings'
-import Home from './Components/LandingPage/Home'
-import SignUpPage from './Components/auth/Sign-up/SignUpPage'
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { store } from "./redux-toolkit/store";
+import { Provider } from "react-redux";
+import { ClerkProvider, SignUp } from "@clerk/clerk-react";
+import MovieDetails from "./components/MoviesInterfaceCmpnts/MovieDetails";
+import MoviesList from "./components/MoviesInterfaceCmpnts/MoviesList";
+import SignInForm from "./components/auth/SignInForm";
+import PrivateRoute from "./components/auth/PrivateRoute";
+import HistorySave from "./components/HistorySave";
+import Bookings from "./components/Bookings";
+import Home from "./components/LandingPage/Home";
+import SignUpPage from "./components/auth/Sign-up/SignUpPage";
+import App from "./App";
 // import ResetPassword from './Components/auth/reset-password/ResetPassword'
 // import SignUpForm from './Components/auth/SignUpForm'
 // import SignUp from './Clerk/SignUpForm'
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: (
       <PrivateRoute>
-        <Layout />
+        <App />
       </PrivateRoute>
     ),
     children: [
@@ -33,63 +33,60 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Home />
           </PrivateRoute>
-        )
+        ),
       },
       {
-        path: 'MoviesList',
+        path: "MoviesList",
         element: (
           <PrivateRoute>
             <MoviesList />
           </PrivateRoute>
-        )
+        ),
       },
       {
-        path: 'movie/:id',
+        path: "movie/:id",
         element: (
           <PrivateRoute>
             <MovieDetails />
           </PrivateRoute>
-        )
+        ),
       },
       {
-        path: 'HistoryPage',
+        path: "HistoryPage",
         element: (
           <PrivateRoute>
             <HistorySave />
           </PrivateRoute>
-        )
+        ),
       },
-    ]
+    ],
   },
   {
-    path: 'BookingsPage',
+    path: "BookingsPage",
     element: (
       <PrivateRoute>
         <Bookings />
       </PrivateRoute>
-    )
+    ),
   },
   {
-    path: 'sign-in',
-    element: <SignInForm />
+    path: "sign-in",
+    element: <SignInForm />,
   },
   // {
   //   path: 'reset-password',
   //   element: <ResetPassword />
   // },
   {
-    path: 'sign-up',
-    element: <SignUpPage />
+    path: "sign-up",
+    element: <SignUpPage />,
   },
-
-])
-createRoot(document.getElementById('root')).render(
-
+]);
+createRoot(document.getElementById("root")).render(
   <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
     <Provider store={store}>
       {/* <CursorFollower /> */}
       <RouterProvider router={router} />
     </Provider>
   </ClerkProvider>
-
-)
+);

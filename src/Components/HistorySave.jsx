@@ -22,7 +22,7 @@ const HistorySave = () => {
         {historyItems.length > 0 && (
           <button
             onClick={() => dispatch(clearHistory())}
-            className="bg-red-500 text-white text-sm px-4 py-1 rounded hover:bg-red-600"
+            className="bg-red-500 cursor-pointer text-white text-sm px-4 py-1 rounded hover:bg-red-600"
           >
             Clear History
           </button>

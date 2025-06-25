@@ -1,83 +1,19 @@
-import { animate, stagger } from "motion";
-import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
 import MovieDetailsSkeleton from "../Skeleton/MovieDetailsSkeleton";
-import { BASE_URL, BASE_URL_IMAGE } from "@/Constants";
+import { BASE_URL_IMAGE } from "@/Constants";
 import { motion } from "framer-motion";
-import Modal from "../../Hooks/Modal";
+import Modal from "../reusable-components/Modal";
 import Loader from "../Loader";
+import useMovieDetails from "@/hooks/useMovieDetails";
 
 const MovieDetails = () => {
-  const [selectedMovies, setSelectedMovies] = useState(null);
-  const [playMovie, setPlayMovie] = useState(null);
-  const [showPlayer, setShowPlayer] = useState(false);
-
-  const { id } = useParams();
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const titleRef = useRef(null);
-
-  useEffect(() => {
-    async function fetchMovieDetails() {
-      try {
-        const response = await fetch(
-          `${BASE_URL}/movie/${id}?api_key=${API_KEY}`
-        );
-        const data = await response.json();
-        setSelectedMovies(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    setTimeout(fetchMovieDetails, 500);
-  }, [id]);
-
-  useEffect(() => {
-    if (!selectedMovies || !titleRef.current) return;
-
-    document.fonts.ready.then(() => {
-      const element = titleRef.current;
-      const text = element.textContent;
-      const words = text.split(" ").map((word, index) => {
-        const span = document.createElement("span");
-        span.textContent = word + " ";
-        span.className = "inline-block opacity-0 translate-y-2";
-        span.style.willChange = "transform, opacity";
-        return span;
-      });
-
-      element.innerHTML = "";
-      words.forEach((span) => element.appendChild(span));
-
-      animate(
-        element.querySelectorAll("span"),
-        { opacity: [0, 1], y: [10, 0] },
-        {
-          delay: stagger(0.05),
-          duration: 0.8,
-          easing: "ease-out",
-        }
-      );
-    });
-  }, [selectedMovies]);
-
-  const handlePlay = async (movieId) => {
-    try {
-      const res = await fetch(
-        `${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`
-      );
-      const data = await res.json();
-      const trailer = data.results.find(
-        (video) => video.type === "Trailer" && video.site === "YouTube"
-      );
-      if (trailer) {
-        setPlayMovie(trailer);
-        setShowPlayer(true);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    selectedMovies,
+    titleRef,
+    playMovie,
+    setShowPlayer,
+    showPlayer,
+    handlePlay,
+  } = useMovieDetails();
 
   return (
     <div className="h-full w-[90%] overflow-y-auto mx-auto my-2 p-2 bg-[oklch(0.27 0.01 0)] rounded-lg scrollbar-hide">
