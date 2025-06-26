@@ -59,7 +59,6 @@
   --accent: oklch(0.967 0.003 264.542);
   --accent-foreground: oklch(0.21 0.034 264.665);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.928 0.006 264.531);
   --input: oklch(0.928 0.006 264.531);
   --ring: oklch(0.707 0.022 261.325);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -75,14 +74,19 @@
   --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
-}
+  --border: oklch(78.883% 0.00747 268.571);
 
-:root {
+  
+  /* css for Cube  */
   --primary-bg: #f7f6f2;
   --primary-text: #1a1a1a;
   /* --accent: #ffb26b; */
   --header-bg: #fffbe7;
   --button-text: #1a1a1a;
+  --cube-bg: transparent;
+  --cube-border: none;
+  --primary-bg: #f7f6f2;
+  --primary-text: #1a1a1a;
 }
 
 [data-theme='dark'] {
@@ -92,7 +96,14 @@
   --header-bg: #232946;
   --button-bg: #393e46;
   --button-text: #f7f6f2;
+  --cube-bg: rgba(255, 255, 255, 0.05);
+  --cube-border: 1px solid rgba(255, 255, 255, 0.1);
+  --primary-bg: #0b1012;
+  --primary-text: #f7f6f2;
 }
+
+
+
 
 @layer base {
   * {
@@ -106,10 +117,6 @@
     background: var(--primary-bg);
     color: var(--primary-text);
     transition: background 0.3s, color 0.3s;
-    
-  /* background-color: #0d0d0d;  */
-    /* background-color: #0a0a0a; */
-    
   }
 }
 .scrollbar-hide::-webkit-scrollbar {

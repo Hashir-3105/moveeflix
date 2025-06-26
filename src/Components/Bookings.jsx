@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { clearCart } from "@/redux-toolkit/slices/cartSlice";
 import { saveToHistory } from "@/redux-toolkit/slices/historyDetailSlice";
 import LoadingSuccess from "./LoadingSuccess";
+import { RippleButton } from "./animate-ui/buttons/ripple";
 
 const Bookings = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -103,12 +104,12 @@ const Bookings = () => {
                 </p>
               </div>
               <div className="my-3 flex justify-center items-center">
-                <button
+                <RippleButton
                   onClick={handleConfirmBooking}
-                  className="cursor-pointer sm:w-full md:w-3xl bg-gray-300 text-black border w-full mx-auto rounded-lg py-2"
+                  className="sm:w-full md:w-3xl bg-gray-600 w-full mx-auto py-2"
                 >
                   Confirm Bookings
-                </button>
+                </RippleButton>
               </div>
             </>
           )}

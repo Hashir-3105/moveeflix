@@ -1,10 +1,26 @@
 "use client";
 
 import { useAnimationFrame } from "motion/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AnimatedCubeBackground() {
   const ref = useRef(null);
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setTheme(document.documentElement.getAttribute("data-theme") || "dark");
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    setTheme(document.documentElement.getAttribute("data-theme") || "dark");
+
+    return () => observer.disconnect();
+  }, []);
 
   useAnimationFrame((t) => {
     if (!ref.current) return;
@@ -16,13 +32,18 @@ export default function AnimatedCubeBackground() {
 
   return (
     <div className="cube-bg">
-      <div className="cube" ref={ref}>
-        <div className="side front" />
-        <div className="side left" />
-        <div className="side right" />
-        <div className="side top" />
-        <div className="side bottom" />
-        <div className="side back" />
+      <div ref={ref} className="cube">
+        {["front", "back", "left", "right", "top", "bottom"].map((side) => (
+          <div
+            key={side}
+            className={`side ${side}`}
+            style={{
+              backgroundColor: "var(--cube-bg)",
+
+              border: "var(--cube-border)",
+            }}
+          />
+        ))}
       </div>
       <StyleSheet />
     </div>
@@ -32,43 +53,54 @@ export default function AnimatedCubeBackground() {
 function StyleSheet() {
   return (
     <style>{`
-            .cube-bg {
-                position: fixed;
-                top: 30px;
-                left: 0;
-                width: 100vw;
-                height: 120vh;
-                z-index: -2;
-                pointer-events: none;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                perspective: 1200px;
-                overflow: hidden;
-            }
+      .cube-bg {
+        position: fixed;
+        top: 30px;
+        left: 0;
+        width: 100vw;
+        height: 120vh;
+        z-index: -2;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1200px;
+        overflow: hidden;
+      }
 
-            .cube {
-                width: 300px;
-                height: 300px;
-                transform-style: preserve-3d;
-                position: relative;
-            }
+      .cube {
+        width: 300px;
+        height: 300px;
+        transform-style: preserve-3d;
+        position: relative;
+      }
 
-            .side {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(4px);
-            }
+      .side {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(4px);
+      }
 
-            .front { transform: rotateY(0deg) translateZ(150px); }
-            .back { transform: rotateY(180deg) translateZ(150px); }
-            .left { transform: rotateY(-90deg) translateZ(150px); }
-            .right { transform: rotateY(90deg) translateZ(150px); }
-            .top { transform: rotateX(90deg) translateZ(150px); }
-            .bottom { transform: rotateX(-90deg) translateZ(150px); }
-        `}</style>
+      .front { transform: rotateY(0deg) translateZ(150px); }
+      .back { transform: rotateY(180deg) translateZ(150px); }
+      .left { transform: rotateY(-90deg) translateZ(150px); }
+      .right { transform: rotateY(90deg) translateZ(150px); }
+      .top { transform: rotateX(90deg) translateZ(150px); }
+      .bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+      @media (max-width: 500px) {
+        .cube {
+          width: 180px;
+          height: 180px;
+        }
+        .front { transform: rotateY(0deg) translateZ(90px); }
+        .back { transform: rotateY(180deg) translateZ(90px); }
+        .left { transform: rotateY(-90deg) translateZ(90px); }
+        .right { transform: rotateY(90deg) translateZ(90px); }
+        .top { transform: rotateX(90deg) translateZ(90px); }
+        .bottom { transform: rotateX(-90deg) translateZ(90px); }
+      }
+    `}</style>
   );
 }
