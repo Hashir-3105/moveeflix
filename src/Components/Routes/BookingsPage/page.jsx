@@ -1,4 +1,4 @@
-import Bookings from "@/components/Bookings";
+import Bookings from "@/Components/Bookings";
 import React from "react";
 
 const page = () => {

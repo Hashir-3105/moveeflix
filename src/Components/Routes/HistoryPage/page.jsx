@@ -1,4 +1,4 @@
-import HistorySave from "@/components/HistorySave";
+import HistorySave from "@/Components/HistorySave";
 import React from "react";
 
 const page = () => {

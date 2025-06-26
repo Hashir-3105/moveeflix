@@ -9,7 +9,7 @@ import {
 } from "@/redux-toolkit/slices/filterSlice";
 import MoviesCard from "./MoviesCard";
 import HeaderMenu from "./HeaderMenu";
-import CustomPagination from "@/components/reusable-components/CustomPagination";
+import CustomPagination from "@/Components/reusable-components/CustomPagination";
 import useFetchMovies from "@/hooks/useFetchMovies";
 
 const MoviesList = () => {
