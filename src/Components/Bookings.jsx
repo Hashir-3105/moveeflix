@@ -54,7 +54,7 @@ const Bookings = () => {
                 {cartItems.map((item) => (
                   <div
                     key={item.id}
-                    className="flex justify-between items-center gap-4 bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow sm:flex-col md:flex-row"
+                    className="flex justify-between items-center gap-4 bg-white shadow-md rounded-lg p-4  transition-shadow sm:flex-col md:flex-row"
                   >
                     <div className="flex gap-2 justify-center items-center sm:flex-col md:flex-row">
                       <img

@@ -10,6 +10,7 @@ import SideSheet from "./SideSheet";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu } from "lucide-react";
 import { X } from "lucide-react";
+import { RollingText } from "./animate-ui/text/rolling";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,23 +49,6 @@ const Header = () => {
     };
   }, []);
 
-  useEffect(() => {
-    animate("h1 span", {
-      y: [
-        { to: "-2.75rem", ease: "outExpo", duration: 600 },
-        { to: 0, ease: "outBounce", duration: 800, delay: 100 },
-      ],
-      rotate: {
-        from: "-1turn",
-        delay: 0,
-      },
-      delay: (_, i) => i * 50,
-      ease: "inOutCirc",
-      loopDelay: 1000,
-      loop: true,
-    });
-  }, []);
-
   return (
     <>
       <div className="flex justify-between items-center mb-4 sticky top-0 z-50 bg-white/10 backdrop-blur-md px-4 py-2 shadow-sm">
@@ -74,11 +58,7 @@ const Header = () => {
         >
           <div className="flex items-center justify-center w-full h-full bg-white/10 backdrop-blur-md rounded-xl px-4 py-2 hover:scale-105 transition-transform">
             <h1 className="font-bold text-white text-sm sm:text-xl tracking-wide animated-title">
-              {"MoVeeFlix".split("").map((char, index) => (
-                <span key={index} className="inline-block">
-                  {char}
-                </span>
-              ))}
+              <RollingText text="MoVeeFlix" />
             </h1>
           </div>
         </Link>
