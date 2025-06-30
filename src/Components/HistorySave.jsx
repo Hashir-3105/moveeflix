@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL_IMAGE } from "@/Constants";
 import { clearHistory } from "@/redux-toolkit/slices/historyDetailSlice";
 import ItemDetailsModal from "./ItemDetailsModal";
+import { DialogAnimate } from "./DialogAnimate";
+// import DialogAnimate from "./DialogAnimate";
 
 const STATIC_Booking_PRICE = 40;
 
 const HistorySave = () => {
   const historyItems = useSelector((state) => state.history.items);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [isOpen, setIsOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   const subTotal = historyItems.reduce((acc, item) => {
@@ -20,12 +23,13 @@ const HistorySave = () => {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Booking History</h1>
         {historyItems.length > 0 && (
-          <button
-            onClick={() => dispatch(clearHistory())}
-            className="bg-red-500 cursor-pointer text-white text-sm px-4 py-1 rounded hover:bg-red-600"
-          >
-            Clear History
-          </button>
+          <DialogAnimate
+            onclick={() => setIsOpen(true)}
+            open={isOpen}
+            onclose={() => setIsOpen(false)}
+            onReject={() => setIsOpen(false)}
+            onAccept={() => dispatch(clearHistory()) && setIsOpen(false)}
+          />
         )}
       </div>
       {historyItems.length === 0 ? (
@@ -87,6 +91,7 @@ const HistorySave = () => {
           </div>
         </>
       )}
+
       {selectedItem && (
         <ItemDetailsModal
           item={selectedItem}

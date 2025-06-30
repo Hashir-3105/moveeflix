@@ -26,7 +26,7 @@ const Footer = () => {
             Home
           </Link>
           <a href="#gallery" className="hover:text-white">
-            Contact us
+            Gallery
           </a>
           <a href="#top-rated" className="hover:text-white">
             Top Rated
