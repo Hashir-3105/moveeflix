@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogFooter,
-} from "@/components/animate-ui/headless/dialog";
+} from "@/Components/animate-ui/headless/dialog";
 import { Trash2 } from "lucide-react";
 
 export const DialogAnimate = ({
