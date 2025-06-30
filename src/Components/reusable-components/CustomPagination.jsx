@@ -7,6 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/Components/ui/pagination";
+import { getPaginationRange } from "@/lib/utils";
 
 const CustomPagination = ({ currentPage, onPageChange, totalPages }) => {
   return (
@@ -24,20 +25,24 @@ const CustomPagination = ({ currentPage, onPageChange, totalPages }) => {
             } cursor-pointer`}
           />
         </PaginationItem>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <PaginationItem key={page}>
-            <PaginationLink
-              isActive={currentPage === page}
-              onClick={() => onPageChange(page)}
-              className={`${currentPage === page ? "bg-gray-500" : ""}`}
-            >
-              {page}
-            </PaginationLink>
+        {getPaginationRange(currentPage, totalPages).map((page, index) => (
+          <PaginationItem key={index}>
+            {page === "..." ? (
+              <span className="px-2">...</span>
+            ) : (
+              <PaginationLink
+                isActive={currentPage === page}
+                onClick={() => onPageChange(page)}
+                className={`${currentPage === page ? "bg-gray-500" : ""}`}
+              >
+                {page}
+              </PaginationLink>
+            )}
           </PaginationItem>
         ))}
+
         <PaginationItem>
           <PaginationNext
-            // disabled={currentPage === totalPages || totalPages === 0}
             onClick={(e) => {
               e.preventDefault();
               if (currentPage < totalPages) {

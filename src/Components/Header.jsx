@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, use } from "react";
 import { ShoppingCart, FolderClock, Search } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { animate } from "animejs";
 import { setSearchItem } from "@/redux-toolkit/slices/filterSlice";
 import ThemeToggle from "./reusable-components/ThemeToggle";
 import { UserButton } from "@clerk/clerk-react";
