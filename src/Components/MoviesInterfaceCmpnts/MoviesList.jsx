@@ -21,6 +21,7 @@ const MoviesList = () => {
     setCurrentPage,
     currentPosts,
     totalPages,
+    allMovies,
   } = useFetchMovies();
 
   const handlePageClick = (page) => {
@@ -52,8 +53,7 @@ const MoviesList = () => {
           ? Array.from({ length: 8 }).map((_, index) => (
               <MovieListSkeleton key={index} />
             ))
-          : filteredMovies &&
-            currentPosts.map((movie, index) => (
+          : filteredMovies.map((movie, index) => (
               <MoviesCard
                 key={index}
                 id={movie.id}

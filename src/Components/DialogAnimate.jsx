@@ -47,14 +47,18 @@ export const DialogAnimate = ({
           </DialogHeader>
           <DialogFooter>
             <Button
-              className={"text-black"}
+              className={"text-black cursor-pointer"}
               variant="outline"
               onClick={onReject}
             >
               Decline
             </Button>
-            <Button type="submit" onClick={onAccept}>
-              Accept
+            <Button
+              className={"bg-red-400 hover:bg-red-400 cursor-pointer"}
+              type="submit"
+              onClick={onAccept}
+            >
+              Delete
             </Button>
           </DialogFooter>
         </DialogPanel>

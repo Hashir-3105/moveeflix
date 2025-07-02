@@ -42,11 +42,12 @@ function useFetchMovies() {
 
   const filteredMovies = useMemo(() => {
     const result = allMovies
-      .filter((movie) =>
-        movie.original_title
-          .toLowerCase()
-          .includes(filters.searchItem.toLowerCase())
-      )
+      // .filter((movie) => {
+      //   if (!filters.searchItem.trim()) return true;
+      //   return movie.original_title
+      //     .toLowerCase()
+      //     .includes(filters.searchItem.toLowerCase());
+      // })
       .filter((movie) => {
         const voteCount = movie.vote_count;
         if (filters.voteRange === "1-500")
@@ -71,14 +72,14 @@ function useFetchMovies() {
   // const lastPostIndex = currentPage * postPerPage;
   // const firstPostIndex = lastPostIndex - postPerPage;
   // const currentPosts = allMovies.slice(firstPostIndex, lastPostIndex);
-  const currentPosts = allMovies;
+  // const currentPosts = allMovies;
 
   return {
     allMovies,
     isLoading,
     filteredMovies,
     setCurrentPage,
-    currentPosts,
+    currentPosts: filteredMovies,
     totalPages,
     currentPage,
   };
